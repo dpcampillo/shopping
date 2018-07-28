@@ -30,7 +30,7 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	public static final Logger logger = LoggerFactory.getLogger(ProductControllerTest.class);
+	public static final Logger logger = LoggerFactory.getLogger(ProductController.class);
 
 	@RequestMapping(value = "/products", method = RequestMethod.GET)
 	public ResponseEntity<?> getAllProducts() {
