@@ -18,6 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.develop.shopping.domain.Product;
 import com.develop.shopping.service.ProductService;
 
+/**
+ * Api para los productosw2
+ * @author Usuario
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class ProductController {

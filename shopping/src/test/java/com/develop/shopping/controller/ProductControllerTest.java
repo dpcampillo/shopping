@@ -29,6 +29,11 @@ import com.develop.shopping.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+/**
+ * Test del controlador de productos
+ * @author Usuario
+ *
+ */
 @RunWith(SpringRunner.class)
 @WebMvcTest(ProductController.class)
 public class ProductControllerTest {
@@ -49,7 +54,7 @@ public class ProductControllerTest {
 	private UserRepository userRepository;
 
 	@Test
-	public void givenProducts_whenGetProducts_thenReturnJsonArray() throws Exception {
+	public void givenProducts_whenGetProductsThenReturnJsonArray() throws Exception {
 		Product aux = new Product(5L, "005", "Colgate", 2000.0, "Colgate", 100);
 		List<Product> list = Arrays.asList(new Product(2L, "002", "Meat", 3000.0, "Meat", 200), aux);
 

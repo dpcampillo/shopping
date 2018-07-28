@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.develop.shopping.domain.Order;
 
+/**
+ * Repositorio de las Ordenes
+ * @author Usuario
+ *
+ */
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long>, JpaSpecificationExecutor<Order>{
 }

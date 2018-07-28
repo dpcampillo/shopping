@@ -1,5 +1,10 @@
 package com.develop.shopping.security;
 
+/**
+ * Constantes de seguridad
+ * @author Usuario
+ *
+ */
 public class SecurityCons {
 
 	// Spring Security

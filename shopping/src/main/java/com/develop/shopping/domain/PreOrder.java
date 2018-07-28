@@ -7,6 +7,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+/**
+ * Entidad para almacenar los productos en el carrito de compras
+ * @author Usuario
+ *
+ */
 @Entity(name = "preorder")
 public class PreOrder implements Serializable{
 	/**

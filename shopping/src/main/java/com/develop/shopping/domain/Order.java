@@ -13,6 +13,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+/**
+ * Entidad para manejar las ordenes de productos
+ * @author Usuario
+ *
+ */
 @Entity(name = "order_pro")
 public class Order implements Serializable{
 	/**

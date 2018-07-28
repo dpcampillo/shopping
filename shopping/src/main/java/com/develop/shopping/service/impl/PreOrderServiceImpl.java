@@ -20,6 +20,11 @@ import com.develop.shopping.exception.StatusException;
 import com.develop.shopping.repository.PreOrderRepository;
 import com.develop.shopping.service.PreOrderService;
 
+/**
+ * Implementacion del servicio de Preordenes
+ * @author Usuario
+ *
+ */
 @Service
 public class PreOrderServiceImpl implements PreOrderService {
 
@@ -30,7 +35,11 @@ public class PreOrderServiceImpl implements PreOrderService {
 	public Optional<PreOrder> findById(Long id) {
 		return preOrderRepository.findById(id);
 	}
-
+	
+	/**
+	 * Agrega una preorden al sistema para este usuario, en el caso que exista una preorden para un producto en especifico
+	 * el sistema modifica la preorden donde esta ese producto modificandole la cantidad
+	 */
 	@Override
 	public PreOrder add(PreOrder preOrder) {
 		List<PreOrder> list = findPreOrderByProduct(preOrder.getIdUser(), preOrder.getIdProduct());
@@ -54,7 +63,10 @@ public class PreOrderServiceImpl implements PreOrderService {
 		preOrderRepository.flush();
 		return preOrderAux.get();
 	}
-
+	
+	/**
+	 * Se utiliza un objeto Specification para agregar los filtros a la busqueda de preordenes
+	 */
 	@Override
 	public List<PreOrder> findAllByUser(Long idUser) {
 		return preOrderRepository.findAll(new Specification<PreOrder>() {
@@ -74,7 +86,10 @@ public class PreOrderServiceImpl implements PreOrderService {
 	public List<PreOrder> findAll() {
 		return preOrderRepository.findAll();
 	}
-
+	
+	/**
+	 * Se utiliza un objeto Specification para agregar los filtros a la busqueda de preordenes
+	 */
 	private List<PreOrder> findPreOrderByProduct(Long idUser, Long idProduct) {
 		return preOrderRepository.findAll(new Specification<PreOrder>() {
 

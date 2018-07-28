@@ -15,6 +15,11 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.develop.shopping.service.UserService;
 
+/**
+ * Configuracion del Web Security
+ * @author Usuario
+ *
+ */
 @Configuration
 @EnableWebSecurity
 public class WebSecurity extends WebSecurityConfigurerAdapter implements WebMvcConfigurer {
@@ -24,7 +29,11 @@ public class WebSecurity extends WebSecurityConfigurerAdapter implements WebMvcC
 	public WebSecurity(UserService usuarioService) {
 		this.usuarioService = usuarioService;
 	}
-
+	
+	/**
+	 * Bean para la encriptacion de las claves
+	 * @return
+	 */
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -34,19 +43,30 @@ public class WebSecurity extends WebSecurityConfigurerAdapter implements WebMvcC
 	public AuthenticationManager getAuthenticationManager() throws Exception {
 		return authenticationManager();
 	}
-
+	
+	/**
+	 * Configuracion general de la autenticacion
+	 * @param auth
+	 * @throws Exception
+	 */
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(usuarioService).passwordEncoder(bCryptPasswordEncoder());
 	}
-
+	
+	/**
+	 * Sobreescritura del metodo configure para validar que patters tienen acceso publico y cuales necesitan autenticacion
+	 */
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors().and().csrf().disable().authorizeRequests().antMatchers(HttpMethod.POST, SecurityCons.LOGIN_URL)
 				.permitAll().anyRequest().authenticated().and()
 				.addFilter(new AppAuthorizationFilter(authenticationManager()));
 	}
-
+	
+	/**
+	 * Agregar que metodos http son permitidos en la aplicacion
+	 */
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**").allowedMethods("PUT", "GET", "POST", "DELETE");

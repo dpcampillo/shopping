@@ -4,7 +4,11 @@ import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-
+/**
+ * Entidad usuario para verificar la autenticacion
+ * @author Usuario
+ *
+ */
 @Entity(name="user")
 public class User implements Serializable{
 	/**

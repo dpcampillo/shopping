@@ -18,6 +18,13 @@ public class ShoppingApplication {
 		SpringApplication.run(ShoppingApplication.class, args);
 	}
 
+	/**
+	 * Bean para inicializar la base de datos con productos y usuarios
+	 * @param repository
+	 * @param byBCryptPasswordEncoder
+	 * @param userRepository
+	 * @return
+	 */
 	@Bean
 	public CommandLineRunner loadData(ProductRepository repository, BCryptPasswordEncoder byBCryptPasswordEncoder,
 			UserRepository userRepository) {

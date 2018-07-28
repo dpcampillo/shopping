@@ -22,6 +22,11 @@ import com.develop.shopping.security.SecurityCons;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 
+/**
+ * Controlador que devuelve el acceso de un usuario a partir de un username y un password
+ * @author Usuario
+ *
+ */
 @RestController
 public class LoginController {
 
@@ -54,7 +59,12 @@ public class LoginController {
 					HttpStatus.BAD_REQUEST);
 		}
 	}
-
+	
+	/**
+	 * Generacion del Token Valido
+	 * @param username
+	 * @return
+	 */
 	public synchronized String getToken(String username) {
 		String token = Jwts.builder().setIssuedAt(new Date()).setIssuer(SecurityCons.ISSUER_INFO).setSubject(username)
 				.setExpiration(new Date(System.currentTimeMillis() + SecurityCons.TOKEN_EXPIRATION_TIME))

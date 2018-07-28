@@ -11,7 +11,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
+/**
+ * Entidad para manejar los detalles de las ordenes
+ * @author Usuario
+ *
+ */
 @Entity(name="order_detail")
 public class OrderDetail implements Serializable{
 	/**

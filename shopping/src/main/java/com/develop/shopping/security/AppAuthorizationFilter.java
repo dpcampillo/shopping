@@ -15,6 +15,11 @@ import org.springframework.security.web.authentication.www.BasicAuthenticationFi
 
 import io.jsonwebtoken.Jwts;
 
+/**
+ * Filtro para verificar si un usuario mediante un token valido tiene acceso
+ * @author Usuario
+ *
+ */
 public class AppAuthorizationFilter extends BasicAuthenticationFilter{
 	
 	public AppAuthorizationFilter(AuthenticationManager authManager) {
@@ -33,7 +38,12 @@ public class AppAuthorizationFilter extends BasicAuthenticationFilter{
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		chain.doFilter(req, res);
 	}
-
+	
+	/**
+	 * Conversion del Token al objeto de usuario
+	 * @param request
+	 * @return
+	 */
 	private UsernamePasswordAuthenticationToken getAuthentication(HttpServletRequest request) {
 		String token = request.getHeader(SecurityCons.HEADER_AUTHORIZACION_KEY);
 		logger.info(token+" Url: "+request.getRequestURI());

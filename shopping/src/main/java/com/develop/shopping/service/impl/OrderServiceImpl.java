@@ -28,6 +28,11 @@ import com.develop.shopping.service.OrderService;
 import com.develop.shopping.service.PreOrderService;
 import com.develop.shopping.service.ProductService;
 
+/**
+ * Implementacion del servicio de Ordenes
+ * @author Usuario
+ *
+ */
 @Service
 public class OrderServiceImpl implements OrderService {
 
@@ -37,7 +42,7 @@ public class OrderServiceImpl implements OrderService {
 	private PreOrderService preOrderService;
 	@Autowired
 	private ProductService productService;
-
+	
 	@Override
 	public Optional<Order> findById(Long id) {
 		return orderRepository.findById(id);
@@ -47,7 +52,7 @@ public class OrderServiceImpl implements OrderService {
 	public Order add(Order order) {
 		return orderRepository.save(order);
 	}
-
+	
 	@Override
 	public Order update(Long id, Order order) throws StatusException {
 		Optional<Order> orderAux = findById(id);
@@ -60,7 +65,10 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.flush();
 		return orderAux.get();
 	}
-
+	
+	/**
+	 * Se utiliza un objeto Specification para agregar los filtros a la busqueda de ordenes
+	 */
 	@Override
 	public List<Order> findAllByUser(Long idUser) {
 		return orderRepository.findAll(new Specification<Order>() {
@@ -91,13 +99,21 @@ public class OrderServiceImpl implements OrderService {
 		orderRepository.flush();
 		return orderAux.get();
 	}
-
+	
+	/**
+	 * Crea una orden a partir las preordenes registradas
+	 * 
+	 * 1) Si no existen preordenes el sistema manda una excepcion de que no hay detalles
+	 * 2) Se debe tener en cuenta que si no hay existencias no se puede generar la orden
+	 * 3) Despues de generar la orden, elimina las preordenes activas y actualiza el stock de los productos
+	 */
 	@Override
 	@Transactional
 	public Order actionOrder(Long idUser) throws StatusException {
 		List<PreOrder> listPreOrders = preOrderService.findAllByUser(idUser);
 		Double total = 0.0;
 		Order order = new Order();
+		//Se utiliza un UUID para generar el codigo
 		order.setCode(UUID.randomUUID().toString());
 		order.setDate(new Timestamp(new Date().getTime()));
 		order.setIdUser(idUser);

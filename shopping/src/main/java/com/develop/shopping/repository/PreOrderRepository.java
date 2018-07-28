@@ -6,6 +6,11 @@ import org.springframework.stereotype.Repository;
 
 import com.develop.shopping.domain.PreOrder;
 
+/**
+ * Repositorio de las preordenes
+ * @author Usuario
+ *
+ */
 @Repository
 public interface PreOrderRepository extends JpaRepository<PreOrder, Long>, JpaSpecificationExecutor<PreOrder>{
 }

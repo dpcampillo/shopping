@@ -5,6 +5,11 @@ import java.util.Collection;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 
+/**
+ * Utilidad para autenticar los usuarios en los filtros de seguridad de spring
+ * @author Usuario
+ *
+ */
 public class UserApp extends User{
 
 	private static final long serialVersionUID = 1L;

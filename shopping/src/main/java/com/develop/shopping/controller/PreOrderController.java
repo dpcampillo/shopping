@@ -22,6 +22,11 @@ import com.develop.shopping.exception.StatusException;
 import com.develop.shopping.service.PreOrderService;
 import com.develop.shopping.service.UserService;
 
+/**
+ * Api para las preordenes
+ * @author Usuario
+ *
+ */
 @RestController
 @RequestMapping("/api")
 public class PreOrderController {
